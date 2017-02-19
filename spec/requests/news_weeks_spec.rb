@@ -3,9 +3,9 @@ require 'rails_helper'
 
 RSpec.describe 'NewsWeeks', type: :request do
   describe 'GET /news_weeks' do
-    it 'works! (now write some real specs)' do
-      get news_weeks_path
-      expect(response).to be_success
-    end
+    before { get news_weeks_path }
+
+    specify { expect(response).to be_success }
+    specify { expect(response.content_type).to eq(Mime[:json]) }
   end
 end
