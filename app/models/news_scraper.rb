@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class NewsScraper
   BUSINESS_TITLE = 'Business this week'
   POLITICS_TITLE = 'Politics this week'
@@ -11,7 +10,7 @@ class NewsScraper
     @root_page = Nokogiri::HTML(HTTParty.get(START_URL))
   end
 
-  def business_news_item_elements
+  def business_items
     Nokogiri::HTML(HTTParty.get(business_url)).css('p').map(&:text)
   end
 
@@ -19,7 +18,7 @@ class NewsScraper
     @date ||= Date.parse(root_page.css('.print-edition__date').text.strip)
   end
 
-  def politics_news_item_elements
+  def political_items
     Nokogiri::HTML(HTTParty.get(politics_url)).css('p').map(&:text)
   end
 
